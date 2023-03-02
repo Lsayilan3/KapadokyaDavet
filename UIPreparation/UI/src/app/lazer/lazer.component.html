@@ -1,0 +1,225 @@
+﻿<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title ">{{'LazerList'| translate}}</h4>
+            <a *ngIf="checkClaim('CreateLazerCommand')" class="pull-right" data-toggle="modal" data-target="#lazer"> <i style="color:white"  title="{{'Add'| translate}}" class="far fa-plus-square fa-2x"></i></a>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              
+              <div class="col-md-4 pull-right">
+                <mat-form-field>
+                  <mat-label>Filter</mat-label>
+                  <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
+                </mat-form-field>
+              </div>
+							<table mat-table [dataSource]="dataSource" matSort>
+
+
+								
+                   <ng-container matColumnDef="lazerId">
+                     <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'LazerId'|translate}}</th>
+                     <td mat-cell *matCellDef="let element">{{element.lazerId}}</td>
+				   </ng-container>
+	
+                   <ng-container matColumnDef="photo">
+                     <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Photo'|translate}}</th>
+                     <td mat-cell *matCellDef="let element">{{element.photo}}</td>
+				   </ng-container>
+	
+                   <ng-container matColumnDef="title">
+                     <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Title'|translate}}</th>
+                     <td mat-cell *matCellDef="let element">{{element.title}}</td>
+				   </ng-container>
+	
+                   <ng-container matColumnDef="tag">
+                     <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Tag'|translate}}</th>
+                     <td mat-cell *matCellDef="let element">{{element.tag}}</td>
+				   </ng-container>
+	
+                   <ng-container matColumnDef="price">
+                     <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'Price'|translate}}</th>
+                     <td mat-cell *matCellDef="let element">{{element.price}}</td>
+				   </ng-container>
+	
+                   <ng-container matColumnDef="discountPrice">
+                     <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'DiscountPrice'|translate}}</th>
+                     <td mat-cell *matCellDef="let element">{{element.discountPrice}}</td>
+				   </ng-container>
+
+
+           <ng-container matColumnDef="file" >
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td style="width: 25px;" mat-cell
+              *matCellDef="let element">
+              <a *ngIf="checkClaim('UpdateLazerCommand')" data-toggle="modal" data-target="#photoModal"  (click)="upFile(element.lazerId)">
+                <i title="{{'File'| translate}}" style="color:#ff5722;" class="far fa-documents"></i>
+              </a>
+            </td>
+          </ng-container>
+
+
+								<ng-container matColumnDef="update" >
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td style="width: 25px;" mat-cell
+                    *matCellDef="let element">
+                    <a *ngIf="checkClaim('UpdateLazerCommand')" data-toggle="modal" data-target="#lazer"  (click)="getLazerById(element.lazerId)">
+                      <i title="{{'Update'| translate}}" style="color:#ff5722;" class="far fa-edit"></i>
+                    </a>
+                  </td>
+                </ng-container>
+
+                <ng-container matColumnDef="delete" >
+                  <th mat-header-cell *matHeaderCellDef></th>
+                  <td  style="width: 25px;" mat-cell
+                    *matCellDef="let element">
+                    <a *ngIf="checkClaim('DeleteLazerCommand')" (confirm)="deleteLazer(element.lazerId)" [swal]="deleteSwal"><i title="{{'Delete'| translate}}" style="color: #D9534E;"class="fas fa-trash-alt"></i></a>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                <tr class="mat-row" *matNoDataRow style="text-align: center;">
+                  <td class="mat-cell" colspan="4">{{'NoRecordsFound' |translate}} "{{input.value}}"</td>
+                </tr>
+							</table>
+							<mat-paginator [pageSizeOptions]="[10, 25, 50, 100]"></mat-paginator>
+              <mat-label style="float: right; margin-right: 2rem;">Not 245px; 331px; fotoğraflara göre ayarlanmıştır</mat-label>
+							</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal modal-angular fade" id="lazer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          (click)="clearFormGroup(lazerAddForm)"><span aria-hidden="true">&times;</span></button>
+        <h4 class="margin-top">
+           {{'LazerForm'| translate}}
+        </h4>
+        <div class="separator"></div>
+        <form *ngIf="lazerAddForm" [formGroup]="lazerAddForm" (ngSubmit)="save()">
+          
+					<div class="row">
+            <div class="col col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="photo" type="text" id="photo" name="photo"
+                       formControlName="photo" />
+                <div class="alert alert-danger"
+                     *ngIf="lazerAddForm.get('photo')!.hasError('photo') && lazerAddForm.get('photo')!.dirty">
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
+					<div class="row">
+            <div class="col col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="title" type="text" id="title" name="title"
+                       formControlName="title" />
+                <div class="alert alert-danger"
+                     *ngIf="lazerAddForm.get('title')!.hasError('title') && lazerAddForm.get('title')!.dirty">
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
+					<div class="row">
+            <div class="col col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="tag" type="text" id="tag" name="tag"
+                       formControlName="tag" />
+                <div class="alert alert-danger"
+                     *ngIf="lazerAddForm.get('tag')!.hasError('tag') && lazerAddForm.get('tag')!.dirty">
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
+					<div class="row">
+            <div class="col col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="price" type="text" id="price" name="price"
+                       formControlName="price" />
+                <div class="alert alert-danger"
+                     *ngIf="lazerAddForm.get('price')!.hasError('price') && lazerAddForm.get('price')!.dirty">
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
+					<div class="row">
+            <div class="col col-md-12">
+              <mat-form-field class="example-full-width">
+                <input matInput placeholder="discountPrice" type="text" id="discountPrice" name="discountPrice"
+                       formControlName="discountPrice" />
+                <div class="alert alert-danger"
+                     *ngIf="lazerAddForm.get('discountPrice')!.hasError('discountPrice') && lazerAddForm.get('discountPrice')!.dirty">
+                </div>
+              </mat-form-field>
+            </div>
+          </div>
+                   
+          <button mat-raised-button type="submit" class="btn btn-danger pull-right">{{'Save'|translate}}</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-angular fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+          (click)="clearFormGroup(photoForm)"><span aria-hidden="true">&times;</span></button>
+        <h4 class="margin-top">
+           {{'LazerForm'| translate}}
+        </h4>
+        <div class="separator"></div>
+        <form *ngIf="photoForm" [formGroup]="photoForm" (ngSubmit)="addPhotoSave()">
+          
+				
+					<div class="row">
+            <div class="col col-md-12">
+             
+                <input  placeholder="id" type="hidden" id="id" name="id"
+                       formControlName="id" />
+                <div class="alert alert-danger"
+                     *ngIf="photoForm.get('id')!.hasError('id') && photoForm.get('id')!.dirty">
+                </div>
+             
+            </div>
+          </div>
+					<div class="row">
+            <div class="col col-md-12">
+              
+                <input style="float: left;" placeholder="file" type="file" id="file" name="file"  (change)="uploadFile($event)"
+                       formControlName="file" />
+                <div class="alert alert-danger"
+                     *ngIf="photoForm.get('file')!.hasError('file') && photoForm.get('file')!.dirty">
+                </div>
+              
+            </div>
+          </div>
+                   
+          <button mat-raised-button type="submit" class="btn btn-danger pull-right">{{'Save'|translate}}</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<swal #deleteSwal title="{{'DeleteConfirm' | translate}}" icon = "error" [showCancelButton]="true"
+	[confirmButtonText] = "'OK'"[cancelButtonText] = "'Cancel'" >
+</swal>
+

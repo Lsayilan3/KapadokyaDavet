@@ -1,0 +1,589 @@
+<div class="logo" style="padding: 5px">
+  <a class="simple-text" href="#">
+    <!-- <div class="logo-img">
+				 <img src="/assets/img/angular2-logo-red.png">
+		 </div>  -->
+    <!-- Dev Architecture -->
+    <div class="site-logo-text">
+      <h3 style="font-weight: 900;" >Kapadokya</h3>
+      <h5 style="font-weight: 800;">Davet Organizasyon</h5>
+  </div>
+  </a>
+</div>
+<div class="sidebar-wrapper">
+  <div class="nav-container">
+    <ul class="nav">
+      <li routerLinkActive="active">
+        <a data-toggle="collapse" class="nav-link" href="#Management">
+          <i class="material-icons">widgets</i>
+          <p>
+            {{ "Management" | translate }}
+            <b class="caret"></b>
+          </p>
+        </a>
+        <div class="collapse" id="Management">
+          <ul class="nav">
+            <li
+              *ngFor="let menuItem of adminMenuItems"
+              class="{{ menuItem.class }} nav-item"
+            >
+              <a
+                *ngIf="checkClaim(menuItem.claim)"
+                class="nav-link"
+                [routerLink]="[menuItem.path]"
+              >
+                <i class="material-icons">{{ menuItem.icon }}</i>
+                <p>{{ menuItem.title | translate }}</p>
+              </a>
+            </li>
+            <hr>
+
+            <div class="logo" style="padding: 5px">
+              <a class="simple-text" href="#">
+                <!-- <div class="logo-img">
+                     <img src="/assets/img/angular2-logo-red.png">
+                 </div>  -->
+                <!-- Dev Architecture -->
+                <div class="site-logo-text">
+                  <h3 style="font-weight: 900;" >Kapadokya</h3>
+                  <h5 style="font-weight: 800;">Davet Organizasyon </h5>
+                  <h5 style="font-weight: 800;">Planlama</h5>
+              </div>
+              </a>
+            </div>
+            <hr  style="margin-top: -1px; opacity: 8;">
+            <!-- <div  class="site-logo-text">
+              <h3 style="font-weight: 900; margin-left: 51px;" >KAPADOKYA</h3>
+              <h5 style="font-weight: 800; margin-left: 29px;">DAVET ORGANİZASYON </h5>
+              <h5 style="font-weight: 800; margin-left: 73px;">PLANLAMA</h5>
+          </div> -->
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="SpotCategory" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Spot Category</p>
+              </a>
+    
+            </li> 
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Spot" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Spot</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="organizasyon" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;            
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Organizasyon</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="hediyelik" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Hediyelik</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="lazer" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Lazer Kesim</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="parti" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Parti Store</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="yiyecek" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Yiyecek İçecekler</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="muzik" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Müzik Eğlence</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Cikolata" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i> Çikolata Çeşitleri</p>
+              </a>
+    
+            </li>
+
+            <!-- <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="elmas" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 15px; font-size: 17px;"  class="fa-solid fa-tree-city"></i>Elmas</p>
+              </a>
+    
+            </li> -->
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="blog" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Blog Grid</p>
+              </a>
+    
+            </li>
+
+            <!-- İKİ -->
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Düğün" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Düğün Ürünleri</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Animasyon" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Animasyon Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Açılış" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Açılış Ürünleri </p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Baby" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Baby Shower </p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Catering" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Catering Ürünleri </p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="CoffeBreak" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>CoffeBreak Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Ekipman" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Ekipman Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Kına" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Kına Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Kokteyil" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i> Kokteyil Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Nişan" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i> Nişan Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="PartiEğlence" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Parti Eğlence Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="PartiStore" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Parti Store Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="PersonelTemini" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Personel Temini Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Piknik" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Piknik Ürünleri </p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="SirketEğlence" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Sirket Eğlence Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="SokakLezzeti" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Sokak Lezzeti Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="Sünnet" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Sünnet Ürünleri</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="TrioEkibi" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i> Trio Ekibi Ürünleri</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="EnCokSatan" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>EnCokSatan</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="EnSonUrun" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>EnSonUrun</p>
+              </a>
+    
+            </li>
+
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="GaleriTwo" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>GaleriTwo</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="slider" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>Slider</p>
+              </a>
+    
+            </li>
+            <li class=" nav-item">
+              <a    
+                class="nav-link" routerLink="slidertwo" 
+              >
+                <p style="font-size: 15px; margin: 0;;
+                line-height: 30px;
+                font-size: 15px;
+                position: relative;
+                display: block;
+                height: auto;
+                white-space: nowrap;" ><i style="margin-right: 10px; font-size: 17px;"  class="fa-brands fa-audible"></i>SliderTwo</p>
+              </a>
+    
+            </li>
+            <hr>
+
+          </ul>
+        </div>
+      </li>
+	</ul>
+	
+	<ul class="nav">
+		<li routerLinkActive="active">
+		  <a data-toggle="collapse" class="nav-link" href="#AppMenu">
+			<i class="material-icons">extension</i>
+			<p>
+			  {{ "AppMenu" | translate }}
+			  <b class="caret"></b>
+			</p>
+		  </a>
+		  <div class="collapse" id="AppMenu">
+			<ul class="nav">
+			  <li
+				*ngFor="let menuItem of userMenuItems"
+				class="{{ menuItem.class }} nav-item"
+			  >
+				<a
+				  *ngIf="checkClaim(menuItem.claim)"
+				  class="nav-link"
+				  [routerLink]="[menuItem.path]"
+				>
+				  <i class="material-icons">{{ menuItem.icon }}</i>
+				  <p>{{ menuItem.title | translate }}</p>
+				</a>
+			  </li>
+			</ul>
+		  </div>
+		</li>
+	  </ul>
+  </div>
+</div>
