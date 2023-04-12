@@ -28,9 +28,7 @@ namespace Business.Handlers.OrPartiStores.Queries
                 _mediator = mediator;
             }
 
-            [PerformanceAspect(5)]
-            [CacheAspect(10)]
-            [LogAspect(typeof(FileLogger))]
+           
             //[SecuredOperation(Priority = 1)]
             public async Task<IDataResult<IEnumerable<OrPartiStore>>> Handle(GetOrPartiStoresQuery request, CancellationToken cancellationToken)
             {

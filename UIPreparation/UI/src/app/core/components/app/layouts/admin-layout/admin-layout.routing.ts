@@ -18,7 +18,7 @@ import { OrSirketEglenceComponent } from './../../../../../orSirketEglence/orSir
 import { OrPiknikComponent } from './../../../../../orPiknik/orPiknik.component';
 import { OrPersonelTeminiComponent } from './../../../../../orPersonelTemini/orPersonelTemini.component';
 import { OrPartiStoreComponent } from './../../../../../orPartiStore/orPartiStore.component';
-import { OrPartiEglence } from './../../../../../orPartiEglence/models/orpartieglence';
+
 import { OrNisanComponent } from './../../../../../orNisan/orNisan.component';
 import { OrKokteylComponent } from './../../../../../orKokteyl/orKokteyl.component';
 import { OrKinaaComponent } from './../../../../../orKinaa/orKinaa.component';

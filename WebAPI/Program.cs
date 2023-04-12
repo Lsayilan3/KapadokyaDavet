@@ -30,6 +30,7 @@ namespace WebAPI
                     .ConfigureWebHostDefaults(webBuilder =>
                     {
                         webBuilder.UseStartup<Startup>();
+                        webBuilder.UseWebRoot("wwwroot");
                     })
         .ConfigureLogging(logging =>
         {

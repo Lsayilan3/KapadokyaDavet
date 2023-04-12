@@ -44,6 +44,7 @@ export class AuthService {
 
          var decode = this.jwtHelper.decodeToken(this.storageService.getToken());
 
+         this.storageService.setItem('claims', JSON.stringify(data.data.claims) );
 
         var propUserName = Object.keys(decode).filter(x => x.endsWith("/name"))[0];
         this.userName = decode[propUserName];
@@ -98,7 +99,10 @@ export class AuthService {
 
   claimGuard(claim: string): boolean {
 
-    var check = this.claims.some(function (item) {
+    const claimsJson = localStorage.getItem('claims');
+    const claims = JSON.parse(claimsJson);
+    var check = claims.some(function (item) {
+
       return item == claim;
     })
 

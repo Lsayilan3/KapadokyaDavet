@@ -43,8 +43,15 @@ namespace Business.Handlers.Spots.Commands
                 var result = await _mediator.Send(new GetSpotQuery { SpotId = request.SpotId });
                 if (request.File.Length > 0)
                 {
-                    string uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/spot");
-                    string filePath = Path.Combine(uploads, request.File.FileName);
+                    string folderPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/spot");
+
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    string filePath = Path.Combine(folderPath, request.File.FileName);
+
                     using (Stream fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         await request.File.CopyToAsync(fileStream);

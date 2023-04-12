@@ -51,8 +51,14 @@ namespace Business.Handlers.OrKokteyls.Commands
                 var result = await _mediator.Send(new GetOrKokteylQuery { OrKokteylId = request.OrKokteylId });
                 if (request.File.Length > 0)
                 {
-                    string uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/cocktail");
-                    string filePath = Path.Combine(uploads, request.File.FileName);
+                    string folderPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/cocktail");
+
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    string filePath = Path.Combine(folderPath, request.File.FileName);
+
                     using (Stream fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         await request.File.CopyToAsync(fileStream);

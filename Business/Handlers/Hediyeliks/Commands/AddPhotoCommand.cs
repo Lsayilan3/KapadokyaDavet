@@ -44,8 +44,14 @@ namespace Business.Handlers.Hediyeliks.Commands
                 var result = await _mediator.Send(new GetHediyelikQuery { HediyelikId = request.HediyelikId });
                 if (request.File.Length > 0)
                 {
-                    string uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/gift");
-                    string filePath = Path.Combine(uploads, request.File.FileName);
+                    string folderPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/gift");
+
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    string filePath = Path.Combine(folderPath, request.File.FileName);
+
                     using (Stream fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         await request.File.CopyToAsync(fileStream);

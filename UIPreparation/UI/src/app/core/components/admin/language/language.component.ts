@@ -29,6 +29,7 @@ export class LanguageComponent implements AfterViewInit, OnInit {
 	languageAddForm: FormGroup;
 
 	languageId:number;
+	Filter: string;
 
 
 	constructor(private languageService:LanguageService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: FormBuilder, private authService:AuthService) { }

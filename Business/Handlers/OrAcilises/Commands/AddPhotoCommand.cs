@@ -45,8 +45,14 @@ namespace Business.Handlers.OrAcilises.Commands
                 var result = await _mediator.Send(new GetOrAcilisQuery { OrAcilisId = request.OrAcilisId });
                 if (request.File.Length > 0)
                 {
-                    string uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/opening");
-                    string filePath = Path.Combine(uploads, request.File.FileName);
+                    string folderPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/opening");
+
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    string filePath = Path.Combine(folderPath, request.File.FileName);
+
                     using (Stream fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         await request.File.CopyToAsync(fileStream);

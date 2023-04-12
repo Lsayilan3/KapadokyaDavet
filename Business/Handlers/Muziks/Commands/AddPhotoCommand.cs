@@ -46,8 +46,14 @@ namespace Business.Handlers.Muziks.Commands
                 var result = await _mediator.Send(new GetMuzikQuery { MuzikId = request.MuzikId });
                 if (request.File.Length > 0)
                 {
-                    string uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/music");
-                    string filePath = Path.Combine(uploads, request.File.FileName);
+                    string folderPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads/music");
+
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+                    string filePath = Path.Combine(folderPath, request.File.FileName);
+
                     using (Stream fileStream = new FileStream(filePath, FileMode.Create))
                     {
                         await request.File.CopyToAsync(fileStream);

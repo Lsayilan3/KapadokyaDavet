@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  getApiUrl: "https://localhost:44375/WebAPI/api",
+  getApiUrl: "https://api.kapadokyadavet.com/api",
   getDropDownSetting: {
     singleSelection: false,
     idField: 'id',
@@ -21,3 +21,5 @@ export const environment = {
   }
 
 };
+// https://localhost:44375/WebAPI/api
+// https://api.kapadokyadavet.com/api

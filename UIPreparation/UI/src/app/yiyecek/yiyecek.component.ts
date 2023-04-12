@@ -1,3 +1,4 @@
+import { Yiyecek } from './models/yiyecek';
 import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -6,9 +7,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AlertifyService } from 'app/core/services/alertify.service';
 import { LookUpService } from 'app/core/services/lookUp.service';
 import { AuthService } from 'app/core/components/admin/login/services/auth.service';
-import { Yiyecek } from './models/Yiyecek';
+
 import { YiyecekService } from './services/yiyecek.service';
-import { environment } from 'environments/environment';
+
 
 declare var jQuery: any;
 

@@ -34,7 +34,7 @@ export class TranslateComponent implements  AfterViewInit, OnInit {
 
 
 	translateId: number;
-
+	Filter: string;
 
 	constructor(private translateService: TranslateService, private lookupService: LookUpService, private alertifyService: AlertifyService, private formBuilder: FormBuilder, private authService: AuthService) { }
 

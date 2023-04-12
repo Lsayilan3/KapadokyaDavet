@@ -44,6 +44,7 @@ export class GroupComponent implements AfterViewInit, OnInit {
   isClaimChange: boolean = false;
 
   groupId:number;
+  Filter: string;
 
   constructor(private groupService:GroupService, private lookupService:LookUpService,private alertifyService:AlertifyService,private formBuilder: FormBuilder, private authService:AuthService) { }
 
@@ -57,7 +58,8 @@ export class GroupComponent implements AfterViewInit, OnInit {
 
     this.createGroupAddForm();
 
-    this.dropdownSettings=environment.getDropDownSetting;
+
+    this.dropdownSettings = environment.getDropDownSetting;
 
       this.lookupService.getOperationClaimLookUp().subscribe(data=>{
         this.claimDropdownList=data;

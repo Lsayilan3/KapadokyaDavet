@@ -29,5 +29,4 @@ export class LookUpService {
   getLanguageLookup():Observable<LookUp[]>{
     return this.httpClient.get<LookUp[]>(environment.getApiUrl + "/Languages/getlookup")
   }
-
 }

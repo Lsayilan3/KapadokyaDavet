@@ -41,6 +41,7 @@ export class UserComponent implements AfterViewInit, OnInit {
   isClaimChange: boolean = false;
 
   userId: number;
+  Filter: string;
 
   constructor(
     private userService: UserService,
@@ -281,6 +282,7 @@ export class UserComponent implements AfterViewInit, OnInit {
       this.userList[index].status = false;
       this.dataSource = new MatTableDataSource(this.userList);
 			this.configDataTable();
+      this.getUserList();
     });
 
   }

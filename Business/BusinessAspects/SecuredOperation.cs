@@ -3,6 +3,7 @@ using Castle.DynamicProxy;
 using Core.CrossCuttingConcerns.Caching;
 using Core.Utilities.Interceptors;
 using Core.Utilities.IoC;
+using DataAccess.Abstract;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -21,34 +22,44 @@ namespace Business.BusinessAspects
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ICacheManager _cacheManager;
+        private readonly IUserRepository _users;   // burası cachleri getiremesse veri tabanından getirmek için ayarlandı
 
 
         public SecuredOperation()
         {
             _httpContextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
             _cacheManager = ServiceTool.ServiceProvider.GetService<ICacheManager>();
+            _users = ServiceTool.ServiceProvider.GetService<IUserRepository>();
 
         }
 
         protected override void OnBefore(IInvocation invocation)
         {
-
-            var userId = _httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(x => x.Type.EndsWith("nameidentifier"))?.Value;
-
-            if (userId == null)
+            try
             {
+                var userId = _httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(x => x.Type.EndsWith("nameidentifier"))?.Value;
+                if (userId == null)
+                {
+                    throw new SecurityException(Messages.AuthorizationsDenied);
+                }
+                var oprClaims = _cacheManager.Get($"{CacheKeys.UserIdForClaim}={userId}") as List<string>;
+                if (oprClaims == null)
+                    oprClaims = _users.GetClaims(int.Parse(userId)).Select(s => s.Name).ToList();    // burası cachleri getiremesse veri tabanından getirmek için ayarlandı
+
+                var operationName = invocation.TargetType.ReflectedType.Name ?? "";
+
+                if (oprClaims.Contains(operationName))
+                {
+                    return;
+                }
+
                 throw new SecurityException(Messages.AuthorizationsDenied);
             }
-
-            var oprClaims = _cacheManager.Get($"{CacheKeys.UserIdForClaim}={userId}") as IEnumerable<string>;
-
-            var operationName = invocation.TargetType.ReflectedType.Name;
-            if (oprClaims.Contains(operationName))
+            catch (System.Exception e)
             {
-                return;
+                throw new System.Exception("SecuredOperation:" + e.Message);
             }
 
-            throw new SecurityException(Messages.AuthorizationsDenied);
         }
     }
 }

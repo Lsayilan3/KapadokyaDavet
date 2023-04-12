@@ -21,7 +21,6 @@ export class AuthInterceptorService implements HttpInterceptor {
         setHeaders: {
           'Accept-Language': lang,
           'Authorization': `Bearer ${localStorage.getItem('token')}`
-
         },
         responseType: req.method == "DELETE" ? "text" : req.responseType
       });
