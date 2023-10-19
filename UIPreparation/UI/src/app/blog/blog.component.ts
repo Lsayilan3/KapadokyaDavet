@@ -74,20 +74,6 @@ this.blogService.addFile(formData).subscribe(data=>{
 				console.log(data);
 				this.alertifyService.success(data);
 })
-		// this.http
-		//   .post('https://localhost:44375/WebAPI/api/cities/addPhoto', formData)
-		//   .subscribe({
-    
-		// 	next: (response) => {
-		// 		jQuery('#photoModal').modal('hide');
-		// 		this.clearFormGroup(this.photoForm);
-		// 		this.getCityList();
-		// 		console.log(response);
-		// 		this.alertifyService.success(response.toString());
-		// 	},
-		// 	error: (error) => console.log(error),
-			
-		//   });
 	}
 
 

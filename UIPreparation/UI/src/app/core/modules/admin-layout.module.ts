@@ -1,14 +1,10 @@
 import { SliderTwoComponent } from './../../sliderTwo/sliderTwo.component';
 import { OrDugunComponent } from './../../orDugun/orDugun.component';
 import { CikolataComponent } from './../../cikolata/cikolata.component';
-
-
-
 import { GalleryTwoComponent } from './../../galleryTwo/galleryTwo.component';
 import { EnsonurunComponent } from './../../ensonurun/ensonurun.component';
 import { EnsatanComponent } from './../../ensatan/ensatan.component';
 import { SpotCategoryyComponent } from './../../spotCategoryy/spotCategoryy.component';
-
 import { SpotComponent } from './../../spot/spot.component';
 import { OrKinaaComponent } from './../../orKinaa/orKinaa.component';
 import { OrTrioEkibiComponent } from './../../orTrioEkibi/orTrioEkibi.component';
@@ -36,6 +32,7 @@ import { LazerComponent } from './../../lazer/lazer.component';
 import { HediyelikComponent } from './../../hediyelik/hediyelik.component';
 // import { ElmasComponent } from './../../elmas/elmas.component';
 import { BlogComponent } from './../../blog/blog.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -58,7 +55,6 @@ import { GroupComponent } from 'app/core/components/admin/group/group.component'
 import { UserComponent } from 'app/core/components/admin/user/user.component';
 import { TranslateLoader, TranslateModule, TranslatePipe } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
-
 import { TranslationService } from 'app/core/services/translation.service';
 import { LanguageComponent } from '../components/admin/language/language.component';
 import { TranslateComponent } from '../components/admin/translate/translate.component';

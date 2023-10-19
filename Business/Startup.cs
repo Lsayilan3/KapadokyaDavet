@@ -18,6 +18,7 @@ using DataAccess.Concrete.MongoDb.Context;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -55,6 +56,8 @@ namespace Business
 
             services.AddScoped<IPrincipal>(getPrincipal);
             services.AddMemoryCache();
+
+           
 
             var coreModule = new CoreModule();
 

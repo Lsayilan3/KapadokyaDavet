@@ -42,9 +42,9 @@ namespace Business.BusinessAspects
                 {
                     throw new SecurityException(Messages.AuthorizationsDenied);
                 }
-                var oprClaims = _cacheManager.Get($"{CacheKeys.UserIdForClaim}={userId}") as List<string>;
-                if (oprClaims == null)
-                    oprClaims = _users.GetClaims(int.Parse(userId)).Select(s => s.Name).ToList();    // burası cachleri getiremesse veri tabanından getirmek için ayarlandı
+
+                // Cache'den veri almayı atla ve doğrudan veritabanından al
+                var oprClaims = _users.GetClaims(int.Parse(userId)).Select(s => s.Name).ToList();
 
                 var operationName = invocation.TargetType.ReflectedType.Name ?? "";
 
@@ -59,7 +59,6 @@ namespace Business.BusinessAspects
             {
                 throw new System.Exception("SecuredOperation:" + e.Message);
             }
-
         }
     }
 }
